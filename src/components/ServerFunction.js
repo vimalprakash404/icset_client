@@ -67,6 +67,39 @@ export const getAllGoogle = async () => {
     }
   };
 
+  export const lunchUsersById = async (userId) => {
+    try {
+      const response = await axios.put(`${ipaddress}/users/${userId}/lunch`, {
+        lunch: true, // You can pass true to verify or false to unverify
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  export const verifyGoogleById = async (userId) => {
+    try {
+      const response = await axios.put(`${ipaddress}/google/${userId}/verify`, {
+        verify: true, // You can pass true to verify or false to unverify
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  export const verifyIbmById = async (userId) => {
+    try {
+      const response = await axios.put(`${ipaddress}/ibm/${userId}/verify`, {
+        verify: true, // You can pass true to verify or false to unverify
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
 async function checkServerStatus(seripverURL) {
     try {
       const response = await fetch(ipaddress);

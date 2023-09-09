@@ -8,6 +8,9 @@ import { getUserById } from './components/ServerFunction';
 import { getGoogleById } from './components/ServerFunction';
 import { getIbmById } from './components/ServerFunction';
 import { verifyUsersById } from './components/ServerFunction';
+import { lunchUsersById } from './components/ServerFunction';
+import { verifyGoogleById } from './components/ServerFunction';
+import { verifyIbmById } from './components/ServerFunction';
 function App() {
   let online = false;
   
@@ -26,6 +29,9 @@ let singleuser = undefined;
 let singlegoogle = undefined;
 let singleibm = undefined;
 let verfiyuser = undefined;
+let lunchuser = undefined;
+let verfiyibm = undefined;
+let verfiygoogle = undefined;
   async function getusers() {
     try {
       const userData = await getAllUsers();
@@ -89,6 +95,34 @@ let verfiyuser = undefined;
     }
   }
 
+  async function lunchUser(userId) {
+    try {
+      const userData = await lunchUsersById(userId);
+      lunchuser = userData;
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  }
+
+  async function verfiyGoogle(userId) {
+    try {
+      const userData = await verifyGoogleById(userId);
+      verfiygoogle = userData;
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  }
+
+  async function verfiyIbm(userId) {
+    try {
+      const userData = await verifyIbmById(userId);
+      verfiyibm = userData;
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  }
+
+ 
   getusers()
   getgoogle()
   getibm()
@@ -96,6 +130,10 @@ let verfiyuser = undefined;
   getsingleIbm("0001")
   getsingleGoogle("0001")
   verfiyUser("0002")
+  lunchUser("0003")
+  verfiyGoogle("0001")
+  verfiyIbm("0001")
+  
   setTimeout(() => {
     console.log(online)
     console.log({user:userdata})
@@ -105,6 +143,9 @@ let verfiyuser = undefined;
     console.log({singlegoogle:singlegoogle})
     console.log({singleibm:singleibm})
     console.log({verfiyuser:verfiyuser})
+    console.log({verfiygoogle:verfiygoogle})
+    console.log({verfiyibm:verfiyibm})
+    console.log({lunchuser:lunchuser})
   }, 1000); 
   return (
     <div className="App">
